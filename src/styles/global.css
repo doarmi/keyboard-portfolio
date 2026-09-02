@@ -14,15 +14,16 @@ h2 { margin: 0; font-size: clamp(1rem, 2vw, 1.25rem); font-weight: 650; }
 .keyboard-ui-header { position: absolute; z-index: 8; top: 0; left: 0; right: 0; display: flex; justify-content: space-between; padding: 22px 28px; border-bottom: 1px solid rgba(25,24,22,.22); background: linear-gradient(to bottom, rgba(238,233,223,.72), rgba(238,233,223,0)); font-size: 12px; letter-spacing: .08em; pointer-events: none; }
 .keyboard-interaction-layer { position: absolute; z-index: 7; inset: 0; transition: opacity .25s ease; }
 
-/* Invisible hit areas that only reveal themselves on hover/focus. */
-.key-hotspot { position: absolute; transform: translate(-50%, -50%); border: 0; border-radius: 12px; background: transparent; color: transparent; cursor: pointer; outline: none; transition: transform .18s ease; }
-.key-hotspot::before { content: ''; position: absolute; inset: 5px; border-radius: 8px; border: 1px solid transparent; background: transparent; box-shadow: 0 0 0 0 rgba(221,91,61,0); transition: border-color .18s ease, background .18s ease, box-shadow .18s ease, transform .18s ease; }
-.key-hotspot:hover, .key-hotspot:focus-visible { transform: translate(-50%, -54%); }
-.key-hotspot:hover::before, .key-hotspot:focus-visible::before { border-color: rgba(219,94,65,.82); background: rgba(219,94,65,.10); box-shadow: 0 0 0 4px rgba(219,94,65,.06), 0 10px 26px rgba(68,38,27,.14); transform: translateY(-2px); }
+.key-hotspot { position: absolute; transform: translate(-50%, -50%); border: 0; border-radius: 11px; background: transparent; color: transparent; cursor: pointer; outline: none; transition: transform .18s ease; }
+.key-hotspot::before { content: ''; position: absolute; inset: 3px; border-radius: 8px; border: 1px solid transparent; background: transparent; box-shadow: 0 0 0 0 rgba(221,91,61,0); transition: border-color .18s ease, background .18s ease, box-shadow .18s ease, transform .18s ease; }
+.key-hotspot:hover, .key-hotspot:focus-visible { transform: translate(-50%, -53%); }
+.key-hotspot:hover::before, .key-hotspot:focus-visible::before { border-color: rgba(219,94,65,.68); background: rgba(219,94,65,.07); box-shadow: 0 0 0 3px rgba(219,94,65,.045), 0 8px 20px rgba(68,38,27,.10); transform: translateY(-1px); }
 .key-hotspot:focus-visible::before { outline: 2px solid rgba(25,24,22,.72); outline-offset: 3px; }
-.key-hotspot-d { left: 37.8%; top: 49.4%; width: 72px; height: 62px; }
-.key-hotspot-o { left: 62.4%; top: 38.9%; width: 66px; height: 60px; }
-.key-hotspot-p { left: 65.4%; top: 38.1%; width: 66px; height: 60px; }
+
+/* Final scrub-view alignment at desktop sizes. */
+.key-hotspot-d { left: 31.5%; top: 60.0%; width: 62px; height: 54px; }
+.key-hotspot-o { left: 60.4%; top: 37.1%; width: 58px; height: 52px; }
+.key-hotspot-p { left: 65.2%; top: 34.8%; width: 58px; height: 52px; }
 
 .interaction-guide { position: absolute; z-index: 9; left: 50%; bottom: 64px; transform: translateX(-50%); display: flex; align-items: center; gap: 12px; padding: 10px 14px; border: 1px solid rgba(25,24,22,.26); background: rgba(238,233,223,.80); backdrop-filter: blur(12px); box-shadow: 0 10px 28px rgba(63,48,37,.08); font-size: 13px; white-space: nowrap; transition: .25s ease; pointer-events: none; }
 .interaction-guide.is-project { border-color: rgba(219,94,65,.42); }
@@ -33,9 +34,9 @@ h2 { margin: 0; font-size: clamp(1rem, 2vw, 1.25rem); font-weight: 650; }
 @keyframes cursorGuide { 0%,100% { transform: translate(4px,4px); opacity:.5; } 50% { transform: translate(-5px,-5px); opacity:1; } }
 
 @media (max-width: 900px) {
-  .key-hotspot-d { left: 37.8%; top: 49.4%; width: 62px; height: 56px; }
-  .key-hotspot-o { left: 62.3%; top: 39%; width: 58px; height: 54px; }
-  .key-hotspot-p { left: 65.4%; top: 38.2%; width: 58px; height: 54px; }
+  .key-hotspot-d { left: 31.5%; top: 60%; width: 56px; height: 50px; }
+  .key-hotspot-o { left: 60.4%; top: 37.1%; width: 52px; height: 48px; }
+  .key-hotspot-p { left: 65.2%; top: 34.8%; width: 52px; height: 48px; }
 }
 
 @media (max-width: 700px) {
