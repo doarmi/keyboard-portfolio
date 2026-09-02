@@ -13,31 +13,25 @@ export default function DJStarModel(){
     if(!canvas||!host)return
 
     const scene=new THREE.Scene()
-    const camera=new THREE.PerspectiveCamera(34,1,.1,100)
-    camera.position.set(0,.25,7.4)
+    const camera=new THREE.PerspectiveCamera(35,1,.01,100)
+    camera.position.set(0,.25,8)
     camera.lookAt(0,0,0)
 
-    const renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true,powerPreference:'high-performance'})
+    // Opaque canvas on purpose: this removes every alpha/compositing ambiguity.
+    const renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:false,powerPreference:'high-performance'})
     renderer.setPixelRatio(Math.min(window.devicePixelRatio,2))
     renderer.outputColorSpace=THREE.SRGBColorSpace
     renderer.toneMapping=THREE.ACESFilmicToneMapping
-    renderer.toneMappingExposure=1.25
-    renderer.setClearColor(0x000000,0)
+    renderer.toneMappingExposure=1.35
+    renderer.setClearColor(0x071522,1)
 
-    scene.add(new THREE.AmbientLight(0xffffff,2.6))
-    const key=new THREE.DirectionalLight(0xffffff,5.5)
-    key.position.set(4,6,7)
-    scene.add(key)
-    const fill=new THREE.DirectionalLight(0x8dbdff,3.4)
-    fill.position.set(-5,2,5)
-    scene.add(fill)
-    const warm=new THREE.PointLight(0xffb36b,2.2,18)
-    warm.position.set(3,-1,4)
-    scene.add(warm)
+    scene.add(new THREE.HemisphereLight(0xffffff,0x1b2633,3.2))
+    const key=new THREE.DirectionalLight(0xffffff,5.5);key.position.set(4,6,7);scene.add(key)
+    const fill=new THREE.DirectionalLight(0x8dbdff,3.2);fill.position.set(-5,2,5);scene.add(fill)
+    const warm=new THREE.PointLight(0xffb36b,2.4,20);warm.position.set(3,-1,4);scene.add(warm)
 
     const pivot=new THREE.Group()
     scene.add(pivot)
-
     let model:THREE.Group|null=null
     let raf=0
     let pointerX=0
@@ -45,15 +39,13 @@ export default function DJStarModel(){
 
     const resize=()=>{
       const rect=host.getBoundingClientRect()
-      if(rect.width<2||rect.height<2)return
-      renderer.setSize(rect.width,rect.height,false)
-      camera.aspect=rect.width/rect.height
+      const width=Math.max(320,Math.round(rect.width))
+      const height=Math.max(390,Math.round(rect.height))
+      renderer.setSize(width,height,false)
+      camera.aspect=width/height
       camera.updateProjectionMatrix()
     }
-
-    const ro=new ResizeObserver(resize)
-    ro.observe(host)
-    resize()
+    const ro=new ResizeObserver(resize);ro.observe(host);resize()
 
     const move=(event:PointerEvent)=>{
       const rect=host.getBoundingClientRect()
@@ -62,20 +54,20 @@ export default function DJStarModel(){
     }
     host.addEventListener('pointermove',move)
 
-    const loader=new GLTFLoader()
-    loader.load('/assets/models/IBM_5155.glb',(gltf)=>{
+    new GLTFLoader().load('/assets/models/IBM_5155.glb',(gltf)=>{
       model=gltf.scene
-
       let meshes=0
       model.traverse((object)=>{
         if(!(object instanceof THREE.Mesh))return
-        meshes+=1
+        meshes++
+        object.frustumCulled=false
         const materials=Array.isArray(object.material)?object.material:[object.material]
         materials.forEach((material)=>{
           if(!material)return
           material.side=THREE.DoubleSide
           material.transparent=false
           material.opacity=1
+          material.depthTest=true
           material.depthWrite=true
           material.needsUpdate=true
         })
@@ -85,33 +77,31 @@ export default function DJStarModel(){
       const sourceBox=new THREE.Box3().setFromObject(model)
       const center=sourceBox.getCenter(new THREE.Vector3())
       const size=sourceBox.getSize(new THREE.Vector3())
-      const maxDimension=Math.max(size.x,size.y,size.z)
+      const maxDim=Math.max(size.x,size.y,size.z)
+      if(!Number.isFinite(maxDim)||maxDim<=0){setStatus('3D BOUNDS ERROR');return}
 
-      if(!Number.isFinite(maxDimension)||maxDimension<=0){
-        setStatus('3D BOUNDS ERROR')
-        return
-      }
-
-      model.position.set(-center.x,-center.y,-center.z)
+      // Center the imported hierarchy first, then normalize the wrapper.
+      model.position.sub(center)
       pivot.add(model)
-      pivot.scale.setScalar(4.5/maxDimension)
-      pivot.rotation.set(-.06,-.3,0)
-      pivot.position.set(.15,-.05,0)
+      pivot.scale.setScalar(4.6/maxDim)
+      pivot.rotation.set(-.04,-.22,0)
       pivot.updateMatrixWorld(true)
 
-      // Fit the normalized object from its actual final bounds.
-      const finalBox=new THREE.Box3().setFromObject(pivot)
-      const finalCenter=finalBox.getCenter(new THREE.Vector3())
-      const finalSize=finalBox.getSize(new THREE.Vector3())
-      pivot.position.x-=finalCenter.x
-      pivot.position.y-=finalCenter.y
-      pivot.position.z-=finalCenter.z
+      // One final world-space centering pass.
+      const worldBox=new THREE.Box3().setFromObject(pivot)
+      const worldCenter=worldBox.getCenter(new THREE.Vector3())
+      pivot.position.sub(worldCenter)
+      pivot.updateMatrixWorld(true)
 
-      const radius=Math.max(finalSize.length()*.5,1)
-      camera.position.set(0,radius*.05,radius*2.65)
+      const fittedSize=new THREE.Box3().setFromObject(pivot).getSize(new THREE.Vector3())
+      const verticalFov=THREE.MathUtils.degToRad(camera.fov)
+      const fitHeightDistance=(fittedSize.y*.5)/Math.tan(verticalFov*.5)
+      const fitWidthDistance=((fittedSize.x*.5)/Math.tan(verticalFov*.5))/Math.max(camera.aspect,.5)
+      const distance=Math.max(fitHeightDistance,fitWidthDistance)*1.35
+      camera.position.set(0,fittedSize.y*.05,distance)
+      camera.near=Math.max(.01,distance/100)
+      camera.far=distance*20
       camera.lookAt(0,0,0)
-      camera.near=.05
-      camera.far=radius*10
       camera.updateProjectionMatrix()
 
       setStatus(`${meshes} MESHES · 3D READY`)
@@ -125,24 +115,19 @@ export default function DJStarModel(){
     const render=()=>{
       raf=requestAnimationFrame(render)
       if(model){
-        pivot.rotation.y+=(-.3+pointerX*.12-pivot.rotation.y)*.045
-        pivot.rotation.x+=(-.06-pointerY*.055-pivot.rotation.x)*.045
+        pivot.rotation.y+=(-.22+pointerX*.1-pivot.rotation.y)*.04
+        pivot.rotation.x+=(-.04-pointerY*.045-pivot.rotation.x)*.04
       }
       renderer.render(scene,camera)
     }
     render()
 
-    return()=>{
-      cancelAnimationFrame(raf)
-      ro.disconnect()
-      host.removeEventListener('pointermove',move)
-      renderer.dispose()
-    }
+    return()=>{cancelAnimationFrame(raf);ro.disconnect();host.removeEventListener('pointermove',move);renderer.dispose()}
   },[])
 
   return <div className="djstar-3d-shell">
     <div ref={hostRef} className="djstar-3d-stage">
-      <canvas ref={canvasRef} className="djstar-webgl" />
+      <canvas ref={canvasRef} className="djstar-webgl" width="1040" height="610" />
       <div className="djstar-3d-status">{status}</div>
     </div>
     <div className="djstar-3d-caption"><span>DJSTAR / OBSERVATORY TERMINAL</span><i>INTERACTIVE 3D</i></div>
