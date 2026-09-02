@@ -2,6 +2,7 @@ import { useLayoutEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import '../styles/djstar.css'
+import '../styles/oasis.css'
 
 const projects = [
   { slug:'plivy', name:'PLIVY', subtitle:'Music Diary Community', description:'음악과 함께한 순간을 기록하고 다시 발견하는 음악 다이어리 커뮤니티', href:'https://plivy-intro.vercel.app', visual:'iphone' },
