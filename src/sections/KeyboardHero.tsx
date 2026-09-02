@@ -13,9 +13,9 @@ const projectUrls: Record<ProjectKey, string> = {
 }
 
 const projectLabels: Record<ProjectKey, string> = {
-  P: 'PLIVY',
+  P: '플리비',
   D: 'DJSTAR',
-  O: 'OASIS',
+  O: '오아시스',
 }
 
 const scrubImage = '/assets/scrub/keyboard_01_wide.webp'
@@ -33,12 +33,7 @@ export default function KeyboardHero() {
     const interaction = interactionRef.current
     if (!section || !image || !interaction) return
 
-    gsap.set(image, {
-      scale: 1.03,
-      xPercent: 0,
-      yPercent: 0,
-      transformOrigin: '53% 58%',
-    })
+    gsap.set(image, { scale: 1.03, xPercent: 0, yPercent: 0, transformOrigin: '53% 58%' })
     gsap.set(interaction, { opacity: 0, pointerEvents: 'none' })
 
     const tl = gsap.timeline({
@@ -58,27 +53,9 @@ export default function KeyboardHero() {
       },
     })
 
-    tl.to(image, {
-      scale: 1.24,
-      xPercent: -1.2,
-      yPercent: 1.4,
-      duration: 0.38,
-      ease: 'none',
-    })
-      .to(image, {
-        scale: 1.52,
-        xPercent: -2.4,
-        yPercent: 2.5,
-        duration: 0.34,
-        ease: 'none',
-      })
-      .to(image, {
-        scale: 1.88,
-        xPercent: -3.6,
-        yPercent: 3.8,
-        duration: 0.28,
-        ease: 'none',
-      })
+    tl.to(image, { scale: 1.24, xPercent: -1.2, yPercent: 1.4, duration: 0.38, ease: 'none' })
+      .to(image, { scale: 1.52, xPercent: -2.4, yPercent: 2.5, duration: 0.34, ease: 'none' })
+      .to(image, { scale: 1.88, xPercent: -3.6, yPercent: 3.8, duration: 0.28, ease: 'none' })
 
     return () => {
       tl.scrollTrigger?.kill()
@@ -113,13 +90,7 @@ export default function KeyboardHero() {
     <section ref={sectionRef} className="keyboard-hero" id="keyboard-hero">
       <div className="keyboard-stage">
         <div className="keyboard-scrub" aria-hidden="true">
-          <img
-            ref={imageRef}
-            src={scrubImage}
-            alt=""
-            className="keyboard-scrub-frame keyboard-scrub-single"
-            draggable={false}
-          />
+          <img ref={imageRef} src={scrubImage} alt="" className="keyboard-scrub-frame keyboard-scrub-single" draggable={false} />
         </div>
 
         <header className="keyboard-ui-header">
@@ -129,21 +100,15 @@ export default function KeyboardHero() {
 
         <div ref={interactionRef} className="keyboard-interaction-layer">
           <div className="interaction-guide keyboard-only-guide">
-            <span>키보드에서</span>
-            <kbd>P</kbd><span>PLIVY</span>
+            <span>프로젝트 바로가기</span>
+            <kbd>P</kbd><span>플리비</span>
             <kbd>D</kbd><span>DJSTAR</span>
-            <kbd>O</kbd><span>OASIS</span>
-            <span>키를 눌러 방문하세요</span>
+            <kbd>O</kbd><span>오아시스</span>
           </div>
 
           <nav className="project-shortcut-links" aria-label="Project shortcuts">
             {(['P', 'D', 'O'] as ProjectKey[]).map(key => (
-              <button
-                key={key}
-                type="button"
-                className={`project-shortcut-link ${activeKey === key ? 'is-active' : ''}`}
-                onClick={() => openProject(key)}
-              >
+              <button key={key} type="button" className={`project-shortcut-link ${activeKey === key ? 'is-active' : ''}`} onClick={() => openProject(key)}>
                 <span className="shortcut-key">{key}</span>
                 <span>{projectLabels[key]}</span>
                 <span aria-hidden="true">↗</span>
