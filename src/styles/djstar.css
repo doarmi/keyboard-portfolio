@@ -1,12 +1,14 @@
 .visual-observatory{position:relative;min-height:610px;display:flex;align-items:center;justify-content:center;overflow:visible;perspective:1400px}
 .djstar-photo-mockup{position:relative;width:min(980px,66vw);height:min(590px,43vw);aspect-ratio:auto;border-radius:24px;overflow:hidden;isolation:isolate;transform-style:preserve-3d;transform-origin:50% 60%;background:#06111d;box-shadow:0 48px 115px rgba(0,0,0,.5),0 0 100px rgba(49,111,166,.15)}
 .djstar-cockpit-photo{position:absolute;z-index:1;inset:0;width:100%;height:100%;display:block;object-fit:cover;object-position:center 46%;transform:none}
-.djstar-window-display{position:absolute!important;z-index:20!important;left:18.4%;top:23.8%;width:63.2%;height:31.5%;display:block!important;visibility:visible!important;opacity:1!important;overflow:hidden;background:#01050a;clip-path:polygon(9% 0,91% 0,100% 16%,96% 87%,87% 100%,13% 100%,4% 87%,0 16%);pointer-events:none;transform:translateZ(2px)}
-.djstar-window-display img{position:absolute!important;z-index:21!important;inset:0;width:100%!important;height:100%!important;display:block!important;visibility:visible!important;opacity:1!important;object-fit:cover;object-position:center;filter:contrast(1.08) brightness(.92) saturate(1.02);transform:scale(1.02)}
-.djstar-window-display::after{content:'';position:absolute;z-index:22;inset:0;background:repeating-linear-gradient(0deg,rgba(255,255,255,.012) 0 1px,transparent 1px 3px);pointer-events:none}
-.djstar-photo-mockup::before{content:'';position:absolute;z-index:30;inset:0;background:linear-gradient(115deg,rgba(255,255,255,.035),transparent 25%,transparent 68%,rgba(59,137,205,.035));pointer-events:none}
+/* Saturn replaces only the dark observation-window area. Keep the original cockpit frame and console visible. */
+.djstar-window-display{position:absolute!important;z-index:20!important;left:9.2%;top:5.3%;width:81.6%;height:50.8%;display:block!important;visibility:visible!important;opacity:1!important;overflow:hidden;background:#01050a;border-radius:10% 10% 12% 12% / 15% 15% 18% 18%;clip-path:none;pointer-events:none;transform:translateZ(2px)}
+.djstar-window-display img{position:absolute!important;z-index:21!important;left:0;top:0;width:100%!important;height:100%!important;display:block!important;visibility:visible!important;opacity:1!important;object-fit:cover;object-position:58% center;filter:contrast(1.03) brightness(.76) saturate(.88);transform:scale(.68)}
+.djstar-window-display::before{content:'';position:absolute;z-index:20;inset:0;background:#01050a}
+.djstar-window-display::after{content:'';position:absolute;z-index:22;inset:0;background:radial-gradient(ellipse at center,transparent 46%,rgba(0,0,0,.2) 78%,rgba(0,0,0,.42) 100%),repeating-linear-gradient(0deg,rgba(255,255,255,.01) 0 1px,transparent 1px 3px);pointer-events:none}
+.djstar-photo-mockup::before{content:'';position:absolute;z-index:30;inset:0;background:linear-gradient(115deg,rgba(255,255,255,.025),transparent 25%,transparent 68%,rgba(59,137,205,.025));pointer-events:none}
 .djstar-photo-mockup::after{content:'';position:absolute;z-index:31;inset:0;border:1px solid rgba(128,178,218,.13);border-radius:inherit;box-shadow:inset 0 0 45px rgba(0,0,0,.1);pointer-events:none}
-.djstar-photo-glass{position:absolute;z-index:25;inset:0;background:radial-gradient(circle at 62% 45%,transparent 0 42%,rgba(0,0,0,.02) 80%);pointer-events:none}
+.djstar-photo-glass{position:absolute;z-index:25;inset:0;background:radial-gradient(circle at 62% 45%,transparent 0 42%,rgba(0,0,0,.015) 80%);pointer-events:none}
 .work-djstar .work-copy{position:relative;z-index:3}
 .work-djstar .work-visual{overflow:visible}
 @media(max-width:1200px){.visual-observatory{min-height:560px}.djstar-photo-mockup{width:min(850px,64vw);height:min(520px,42vw)}}
