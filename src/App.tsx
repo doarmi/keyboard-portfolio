@@ -5,6 +5,7 @@ import Contact from './sections/Contact'
 import KeyboardHero from './sections/KeyboardHero'
 import Projects from './sections/Projects'
 import Skills from './sections/Skills'
+import './styles/refinements.css'
 
 gsap.registerPlugin(ScrollTrigger)
 
