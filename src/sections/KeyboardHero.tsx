@@ -12,12 +12,6 @@ const projectUrls: Record<ProjectKey, string> = {
   O: 'https://oasis-xi-eight.vercel.app/',
 }
 
-const projectLabels: Record<ProjectKey, string> = {
-  P: '플리비',
-  D: 'DJSTAR',
-  O: '오아시스',
-}
-
 const scrubImage = '/assets/scrub/keyboard_01_wide.webp'
 
 export default function KeyboardHero() {
@@ -47,7 +41,7 @@ export default function KeyboardHero() {
           setReady(isReady)
           gsap.set(interaction, {
             opacity: isReady ? gsap.utils.mapRange(0.88, 0.96, 0, 1, self.progress) : 0,
-            pointerEvents: isReady ? 'auto' : 'none',
+            pointerEvents: 'none',
           })
         },
       },
@@ -93,28 +87,13 @@ export default function KeyboardHero() {
           <img ref={imageRef} src={scrubImage} alt="" className="keyboard-scrub-frame keyboard-scrub-single" draggable={false} />
         </div>
 
-        <header className="keyboard-ui-header">
-          <span>KEYBOARD / PORTFOLIO</span>
-          <span>2026</span>
-        </header>
-
         <div ref={interactionRef} className="keyboard-interaction-layer">
-          <div className="interaction-guide keyboard-only-guide">
-            <span>프로젝트 바로가기</span>
-            <kbd>P</kbd><span>플리비</span>
-            <kbd>D</kbd><span>DJSTAR</span>
-            <kbd>O</kbd><span>오아시스</span>
+          <div className="interaction-guide keyboard-only-guide" aria-live="polite">
+            <strong>키보드에서 프로젝트 키를 눌러보세요</strong>
+            <span className={`guide-project guide-plivy ${activeKey === 'P' ? 'is-active' : ''}`}><kbd>P</kbd><span>PLIVY</span></span>
+            <span className={`guide-project guide-djstar ${activeKey === 'D' ? 'is-active' : ''}`}><kbd>D</kbd><span>DJSTAR</span></span>
+            <span className={`guide-project guide-oasis ${activeKey === 'O' ? 'is-active' : ''}`}><kbd>O</kbd><span>OASIS</span></span>
           </div>
-
-          <nav className="project-shortcut-links" aria-label="Project shortcuts">
-            {(['P', 'D', 'O'] as ProjectKey[]).map(key => (
-              <button key={key} type="button" className={`project-shortcut-link ${activeKey === key ? 'is-active' : ''}`} onClick={() => openProject(key)}>
-                <span className="shortcut-key">{key}</span>
-                <span>{projectLabels[key]}</span>
-                <span aria-hidden="true">↗</span>
-              </button>
-            ))}
-          </nav>
         </div>
       </div>
     </section>
