@@ -18,28 +18,27 @@ const projectUrls: Record<ProjectKey, string> = {
   O: '#',
 }
 
-const frames = [
-  '/assets/scrub/keyboard_01_wide.webp',
-  '/assets/scrub/keyboard_02_mid.webp',
-  '/assets/scrub/keyboard_03_close.webp',
-  '/assets/scrub/keyboard_04_final.webp',
-]
+const scrubImage = '/assets/scrub/keyboard_01_wide.webp'
 
 export default function KeyboardHero() {
   const sectionRef = useRef<HTMLElement>(null)
-  const frameRefs = useRef<(HTMLImageElement | null)[]>([])
+  const imageRef = useRef<HTMLImageElement>(null)
   const interactionRef = useRef<HTMLDivElement>(null)
   const [project, setProject] = useState<ProjectKey | null>(null)
   const [ready, setReady] = useState(false)
 
   useEffect(() => {
     const section = sectionRef.current
+    const image = imageRef.current
     const interaction = interactionRef.current
-    const imgs = frameRefs.current.filter(Boolean) as HTMLImageElement[]
-    if (!section || !interaction || imgs.length !== frames.length) return
+    if (!section || !image || !interaction) return
 
-    gsap.set(imgs, { opacity: 0, scale: 1.06 })
-    gsap.set(imgs[0], { opacity: 1, scale: 1 })
+    gsap.set(image, {
+      scale: 1.03,
+      xPercent: 0,
+      yPercent: 0,
+      transformOrigin: '53% 58%',
+    })
     gsap.set(interaction, { opacity: 0, pointerEvents: 'none' })
 
     const tl = gsap.timeline({
@@ -47,28 +46,39 @@ export default function KeyboardHero() {
         trigger: section,
         start: 'top top',
         end: 'bottom bottom',
-        scrub: 0.7,
+        scrub: 1.15,
         onUpdate: self => {
-          const isReady = self.progress > 0.9
+          const isReady = self.progress > 0.88
           setReady(isReady)
           gsap.set(interaction, {
-            opacity: isReady ? 1 : 0,
+            opacity: isReady ? gsap.utils.mapRange(0.88, 0.96, 0, 1, self.progress) : 0,
             pointerEvents: isReady ? 'auto' : 'none',
           })
         },
       },
     })
 
-    tl.to(imgs[0], { scale: 1.12, duration: 1, ease: 'none' })
-      .to(imgs[1], { opacity: 1, scale: 1, duration: 0.45, ease: 'none' }, 0.72)
-      .to(imgs[0], { opacity: 0, duration: 0.45, ease: 'none' }, 0.72)
-      .to(imgs[1], { scale: 1.11, duration: 1, ease: 'none' }, 1.05)
-      .to(imgs[2], { opacity: 1, scale: 1, duration: 0.45, ease: 'none' }, 1.72)
-      .to(imgs[1], { opacity: 0, duration: 0.45, ease: 'none' }, 1.72)
-      .to(imgs[2], { scale: 1.1, duration: 1, ease: 'none' }, 2.05)
-      .to(imgs[3], { opacity: 1, scale: 1, duration: 0.5, ease: 'none' }, 2.72)
-      .to(imgs[2], { opacity: 0, duration: 0.5, ease: 'none' }, 2.72)
-      .to(imgs[3], { scale: 1.045, duration: 0.7, ease: 'none' }, 3.05)
+    tl.to(image, {
+      scale: 1.24,
+      xPercent: -1.2,
+      yPercent: 1.4,
+      duration: 0.38,
+      ease: 'none',
+    })
+      .to(image, {
+        scale: 1.52,
+        xPercent: -2.4,
+        yPercent: 2.5,
+        duration: 0.34,
+        ease: 'none',
+      })
+      .to(image, {
+        scale: 1.88,
+        xPercent: -3.6,
+        yPercent: 3.8,
+        duration: 0.28,
+        ease: 'none',
+      })
 
     return () => {
       tl.scrollTrigger?.kill()
@@ -97,16 +107,13 @@ export default function KeyboardHero() {
     <section ref={sectionRef} className="keyboard-hero" id="keyboard-hero">
       <div className="keyboard-stage">
         <div className="keyboard-scrub" aria-hidden="true">
-          {frames.map((src, index) => (
-            <img
-              key={src}
-              ref={el => { frameRefs.current[index] = el }}
-              src={src}
-              alt=""
-              className="keyboard-scrub-frame"
-              draggable={false}
-            />
-          ))}
+          <img
+            ref={imageRef}
+            src={scrubImage}
+            alt=""
+            className="keyboard-scrub-frame keyboard-scrub-single"
+            draggable={false}
+          />
         </div>
 
         <header className="keyboard-ui-header">
