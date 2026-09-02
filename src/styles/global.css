@@ -7,21 +7,37 @@ main { overflow: clip; }
 section { min-height: 50vh; padding: clamp(1rem, 4vw, 3rem); border-bottom: 1px solid rgba(25,24,22,.16); }
 h2 { margin: 0; font-size: clamp(1rem, 2vw, 1.25rem); font-weight: 650; }
 
-.keyboard-hero { height: 320vh; padding: 0; border: 0; background: #eee9df; }
+.keyboard-hero { height: 420vh; padding: 0; border: 0; background: #eee9df; }
 .keyboard-stage { position: sticky; top: 0; height: 100vh; min-height: 620px; overflow: hidden; background: #eee9df; }
-.three-keyboard { position: absolute; inset: 0; width: 100%; height: 100%; }
-.keyboard-ui-header { position: absolute; z-index: 5; top: 0; left: 0; right: 0; display: flex; justify-content: space-between; padding: 22px 28px; border-bottom: 1px solid rgba(25,24,22,.2); font-size: 12px; letter-spacing: .08em; pointer-events: none; }
-.interaction-guide { position: absolute; z-index: 6; left: 50%; bottom: 64px; transform: translateX(-50%); display: flex; align-items: center; gap: 12px; padding: 10px 14px; border: 1px solid rgba(25,24,22,.32); background: rgba(238,233,223,.82); backdrop-filter: blur(10px); font-size: 13px; white-space: nowrap; transition: .25s ease; pointer-events: none; }
+.keyboard-scrub { position: absolute; inset: 0; overflow: hidden; background: #eee9df; }
+.keyboard-scrub-frame { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; object-fit: cover; object-position: center; will-change: transform, opacity; user-select: none; }
+.keyboard-ui-header { position: absolute; z-index: 8; top: 0; left: 0; right: 0; display: flex; justify-content: space-between; padding: 22px 28px; border-bottom: 1px solid rgba(25,24,22,.22); background: linear-gradient(to bottom, rgba(238,233,223,.72), rgba(238,233,223,0)); font-size: 12px; letter-spacing: .08em; pointer-events: none; }
+.keyboard-interaction-layer { position: absolute; z-index: 7; inset: 0; transition: opacity .25s ease; }
+.key-hotspot { position: absolute; width: 58px; height: 58px; transform: translate(-50%, -50%); border: 1px solid rgba(232,102,69,.45); border-radius: 10px; background: rgba(232,102,69,.05); color: transparent; cursor: pointer; outline: none; transition: .2s ease; }
+.key-hotspot:hover, .key-hotspot:focus-visible { border-color: rgba(232,102,69,.95); background: rgba(232,102,69,.18); box-shadow: 0 0 0 4px rgba(232,102,69,.09), 0 12px 28px rgba(39,28,20,.16); transform: translate(-50%, -54%); }
+.key-hotspot-d { left: 38.2%; top: 49.7%; }
+.key-hotspot-o { left: 62.2%; top: 39.2%; }
+.key-hotspot-p { left: 65.1%; top: 38.4%; }
+.interaction-guide { position: absolute; z-index: 9; left: 50%; bottom: 64px; transform: translateX(-50%); display: flex; align-items: center; gap: 12px; padding: 10px 14px; border: 1px solid rgba(25,24,22,.32); background: rgba(238,233,223,.82); backdrop-filter: blur(10px); font-size: 13px; white-space: nowrap; transition: .25s ease; pointer-events: none; }
 .interaction-guide kbd { display: grid; place-items: center; width: 32px; height: 32px; border: 1px solid #191816; border-bottom-width: 3px; border-radius: 4px; background: #e86645; color: #191816; font-weight: 800; }
 .cursor-symbol { display: inline-block; font-size: 20px; animation: cursorGuide 1.2s ease-in-out infinite; }
-.project-key-legend { position: absolute; z-index: 5; right: 26px; bottom: 22px; display: flex; gap: 18px; font-size: 10px; letter-spacing: .08em; pointer-events: none; }
+.project-key-legend { position: absolute; z-index: 9; right: 26px; bottom: 22px; display: flex; gap: 18px; font-size: 10px; letter-spacing: .08em; pointer-events: none; }
 .project-key-legend b { color: #d95032; }
 @keyframes cursorGuide { 0%,100% { transform: translate(4px,4px); opacity:.5; } 50% { transform: translate(-5px,-5px); opacity:1; } }
 
+@media (max-width: 900px) {
+  .key-hotspot { width: 48px; height: 48px; }
+  .key-hotspot-d { left: 38%; top: 50%; }
+  .key-hotspot-o { left: 62%; top: 40%; }
+  .key-hotspot-p { left: 65%; top: 39%; }
+}
+
 @media (max-width: 700px) {
-  .keyboard-hero { height: 240vh; }
+  .keyboard-hero { height: 320vh; }
   .keyboard-stage { min-height: 520px; }
   .keyboard-ui-header { padding: 16px; }
+  .keyboard-scrub-frame { object-position: center; }
   .interaction-guide { bottom: 72px; max-width: calc(100% - 32px); white-space: normal; text-align: center; }
   .project-key-legend { left: 50%; right: auto; bottom: 18px; transform: translateX(-50%); width: max-content; gap: 12px; }
+  .key-hotspot { display: none; }
 }
