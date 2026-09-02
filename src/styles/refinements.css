@@ -13,7 +13,6 @@ body { font-family: 'Noto Sans KR', sans-serif; }
 .skill-key,
 .transition-inner { font-family: 'IBM Plex Mono', monospace; }
 
-/* 인트로 키보드 UI는 처음 디자인의 시스템 폰트 유지 */
 .keyboard-ui-header,
 .interaction-guide,
 .project-shortcut-link {
@@ -24,6 +23,327 @@ body { font-family: 'Noto Sans KR', sans-serif; }
 .work-description { max-width: 460px; font-size: clamp(18px, 1.42vw, 22px); font-weight: 700; line-height: 1.82; letter-spacing: -.015em; color: #302c28; }
 .work-djstar .work-description { color: #e3ebf3; }
 .work-copy a { font-size: 12px; font-weight: 700; }
+
+/* PLIVY — iPhone product mockup */
+.visual-iphone::before {
+  content: '';
+  position: absolute;
+  width: 56%;
+  height: 12%;
+  left: 50%;
+  bottom: 7%;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: rgba(110, 61, 76, .18);
+  filter: blur(24px);
+}
+
+.iphone-mockup {
+  width: min(370px, 68%);
+  padding: 9px;
+  border: 1px solid rgba(30, 24, 22, .9);
+  border-radius: 58px;
+  background:
+    linear-gradient(145deg, rgba(255,255,255,.7), rgba(255,255,255,.06) 25%, transparent 26%),
+    linear-gradient(155deg, #db8baa 0%, #f3c8d5 38%, #7e445a 100%);
+  box-shadow:
+    0 55px 90px rgba(75, 39, 50, .28),
+    0 18px 30px rgba(75, 39, 50, .16),
+    inset 0 0 0 1px rgba(255,255,255,.38);
+  transform: perspective(1300px) rotateY(-10deg) rotateX(4deg) rotateZ(5deg);
+  transition: transform .45s cubic-bezier(.2,.8,.2,1);
+}
+
+.visual-iphone:hover .iphone-mockup {
+  transform: perspective(1300px) rotateY(-4deg) rotateX(1deg) rotateZ(2deg) translateY(-8px);
+}
+
+.iphone-mockup::before,
+.iphone-mockup::after {
+  content: '';
+  position: absolute;
+  left: -4px;
+  width: 3px;
+  border-radius: 3px 0 0 3px;
+  background: #6f3d50;
+}
+.iphone-mockup::before { top: 126px; height: 72px; }
+.iphone-mockup::after { top: 214px; height: 46px; }
+
+.iphone-screen {
+  position: relative;
+  overflow: hidden;
+  padding: 48px 22px 24px;
+  border-radius: 49px;
+  background:
+    radial-gradient(circle at 75% 12%, rgba(199,47,99,.12), transparent 22%),
+    linear-gradient(180deg, #fffaf6, #f6eee9);
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,.05);
+}
+
+.iphone-screen::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(110deg, rgba(255,255,255,.22), transparent 24%, transparent 72%, rgba(255,255,255,.08));
+}
+
+.iphone-island {
+  top: 19px;
+  width: 96px;
+  height: 25px;
+  border: 1px solid rgba(255,255,255,.08);
+  box-shadow: inset 0 1px rgba(255,255,255,.1);
+}
+
+.now-playing {
+  position: relative;
+  overflow: hidden;
+  margin-top: 18px;
+  padding: 20px;
+  border: 1px solid rgba(199,47,99,.08);
+  border-radius: 22px;
+  background: rgba(255,255,255,.82);
+  box-shadow: 0 16px 35px rgba(78,48,54,.09);
+}
+
+.now-playing::before {
+  content: '';
+  display: block;
+  width: 100%;
+  aspect-ratio: 1.35;
+  margin-bottom: 15px;
+  border-radius: 14px;
+  background:
+    linear-gradient(135deg, rgba(199,47,99,.72), rgba(81,47,91,.35)),
+    radial-gradient(circle at 30% 25%, #ffd7e5, transparent 24%),
+    #d98aa5;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.24);
+}
+
+/* OASIS — vinyl / sleeve mockup */
+.visual-vinyl::before {
+  content: '';
+  position: absolute;
+  width: 76%;
+  height: 18%;
+  left: 49%;
+  bottom: 3%;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: rgba(70, 49, 25, .18);
+  filter: blur(28px);
+}
+
+.vinyl-scene {
+  width: min(760px, 100%);
+  height: 560px;
+  transform: perspective(1400px) rotateX(4deg) rotateY(3deg);
+}
+
+.record-sleeve {
+  left: 3%;
+  top: 8%;
+  width: 58%;
+  padding: 34px;
+  overflow: hidden;
+  border: 1px solid rgba(81,59,31,.22);
+  background:
+    linear-gradient(rgba(164,136,94,.18), rgba(164,136,94,.18)),
+    linear-gradient(120deg, #e1d4bd, #a88f69 58%, #80684a);
+  box-shadow: 0 42px 70px rgba(59,43,25,.3);
+  transform: rotate(-5deg) translateY(4px);
+}
+
+.record-sleeve::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: .22;
+  background-image:
+    radial-gradient(circle at 20% 25%, rgba(255,255,255,.7) 0 1px, transparent 1.5px),
+    linear-gradient(95deg, transparent 48%, rgba(45,33,20,.12) 49%, transparent 50%);
+  background-size: 13px 13px, 74px 100%;
+}
+
+.record-sleeve::after {
+  content: 'MANCHESTER · 1994';
+  position: absolute;
+  left: 34px;
+  bottom: 28px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: .16em;
+  opacity: .72;
+}
+
+.record-sleeve b {
+  position: relative;
+  z-index: 2;
+  font-size: clamp(46px, 5vw, 72px);
+  line-height: .9;
+  letter-spacing: -.06em;
+  text-shadow: 0 1px rgba(255,255,255,.3);
+}
+
+.record-sleeve span {
+  position: relative;
+  z-index: 2;
+  display: block;
+  margin-top: 12px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  font-style: normal;
+  letter-spacing: .18em;
+}
+
+.vinyl-disc {
+  right: 0;
+  top: 0;
+  width: 69%;
+  background:
+    radial-gradient(circle at center, transparent 0 11%, rgba(255,255,255,.05) 11.5% 12%, transparent 12.5%),
+    repeating-radial-gradient(circle, #121212 0 2px, #1d1d1d 3px 5px, #0d0d0d 6px 7px);
+  box-shadow:
+    0 38px 62px rgba(0,0,0,.38),
+    inset -18px -20px 30px rgba(0,0,0,.3),
+    inset 14px 12px 30px rgba(255,255,255,.03);
+}
+
+.vinyl-disc::after {
+  content: '';
+  position: absolute;
+  inset: 3%;
+  border-radius: 50%;
+  background: linear-gradient(110deg, transparent 32%, rgba(255,255,255,.09) 48%, transparent 62%);
+}
+
+.vinyl-label {
+  inset: 37%;
+  border: 1px solid rgba(255,255,255,.12);
+  background: radial-gradient(circle at 35% 30%, #e1b35c, #b4781f 68%);
+  box-shadow: inset 0 0 0 2px rgba(76,47,12,.18);
+}
+
+/* DJSTAR — observatory console mockup */
+.visual-observatory::before {
+  content: '';
+  position: absolute;
+  width: 74%;
+  height: 20%;
+  left: 50%;
+  bottom: 2%;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: rgba(26, 88, 151, .25);
+  filter: blur(34px);
+}
+
+.observatory-console {
+  position: relative;
+  width: min(900px, 100%);
+  padding: 18px 18px 16px;
+  border: 1px solid rgba(165,190,212,.24);
+  border-radius: 26px;
+  background:
+    linear-gradient(155deg, rgba(255,255,255,.14), transparent 18%),
+    linear-gradient(145deg, #3d454a, #171d22 48%, #080b0e 100%);
+  box-shadow:
+    0 52px 95px rgba(0,0,0,.62),
+    inset 0 1px rgba(255,255,255,.18),
+    inset 0 0 0 1px rgba(0,0,0,.55);
+  transform: perspective(1300px) rotateY(-7deg) rotateX(2deg);
+  transition: transform .45s cubic-bezier(.2,.8,.2,1);
+}
+
+.visual-observatory:hover .observatory-console {
+  transform: perspective(1300px) rotateY(-2deg) rotateX(0deg) translateY(-6px);
+}
+
+.observatory-console::before {
+  content: 'DJS-01 / OBSERVATION TERMINAL';
+  display: block;
+  padding: 0 8px 12px;
+  color: #9fb4c8;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: .15em;
+}
+
+.observatory-screen {
+  min-height: 455px;
+  border-radius: 15px;
+  background:
+    radial-gradient(circle at 62% 44%, rgba(34,103,168,.28), transparent 24%),
+    linear-gradient(rgba(11,25,39,.88), rgba(3,9,16,.94)),
+    #06111f;
+  box-shadow:
+    inset 0 0 0 1px rgba(91,157,220,.16),
+    inset 0 0 65px rgba(29,101,172,.2),
+    0 0 0 6px #0a0e12;
+}
+
+.observatory-screen::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: .18;
+  background-image:
+    linear-gradient(rgba(86,140,190,.18) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(86,140,190,.18) 1px, transparent 1px);
+  background-size: 52px 52px;
+}
+
+.observatory-screen::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, transparent 0 49%, rgba(110,185,255,.055) 50%, transparent 51%);
+  background-size: 100% 6px;
+  mix-blend-mode: screen;
+}
+
+.saturn {
+  width: 190px;
+  height: 190px;
+  filter: drop-shadow(0 0 28px rgba(239,179,97,.18));
+}
+
+.saturn i {
+  inset: 27px;
+  background:
+    linear-gradient(180deg, transparent 20%, rgba(126,73,33,.26) 22% 24%, transparent 26% 48%, rgba(106,62,28,.18) 50% 52%, transparent 54%),
+    radial-gradient(circle at 35% 30%, #ffe7b6, #d19b58 48%, #84562f 76%);
+}
+
+.saturn span {
+  left: -38px;
+  right: -38px;
+  top: 79px;
+  height: 32px;
+  border-color: #c39a64;
+  box-shadow: 0 0 10px rgba(207,163,103,.15);
+}
+
+.console-controls {
+  align-items: center;
+  gap: 10px;
+  padding: 17px 8px 2px;
+}
+.console-controls::before {
+  content: 'SYSTEM ONLINE';
+  margin-right: auto;
+  color: #7e97aa;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: .14em;
+}
+.console-controls i { width: 11px; height: 11px; border: 1px solid rgba(255,255,255,.2); }
+.console-controls i:nth-child(1) { background: #7fb85a; box-shadow: 0 0 11px rgba(127,184,90,.35); }
+.console-controls i:nth-child(2) { background: #d6a34d; box-shadow: 0 0 11px rgba(214,163,77,.3); }
+.console-controls i:nth-child(3) { background: #b9524a; box-shadow: 0 0 11px rgba(185,82,74,.3); }
 
 .experience-transition { position: relative; min-height: 72vh; display: grid; place-items: center; overflow: hidden; isolation: isolate; }
 .transition-oasis { color: #8d5f16; background: radial-gradient(circle at 50% 54%, rgba(200,148,56,.18), transparent 34%), linear-gradient(180deg, #f2ede4 0%, #ece5da 100%); }
@@ -43,4 +363,9 @@ body { font-family: 'Noto Sans KR', sans-serif; }
   .work-description { font-size: 17px; line-height: 1.72; }
   .experience-transition { min-height: 58vh; }
   .transition-djstar { min-height: 72vh; }
+  .iphone-mockup { width: 240px; }
+  .vinyl-scene { height: 390px; }
+  .record-sleeve { padding: 24px; }
+  .record-sleeve::after { left: 24px; bottom: 20px; }
+  .observatory-screen { min-height: 310px; }
 }
