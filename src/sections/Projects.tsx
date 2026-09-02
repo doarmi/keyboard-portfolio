@@ -1,6 +1,7 @@
 import { useLayoutEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import '../styles/djstar.css'
 
 const projects = [
   {
@@ -83,6 +84,53 @@ export default function Projects() {
           },
         )
       })
+
+      const djstar = root.querySelector<HTMLElement>('.work-djstar')
+      const saturn = root.querySelector<HTMLElement>('.saturn')
+      const reticle = root.querySelector<HTMLElement>('.djstar-reticle')
+      const hud = root.querySelectorAll<HTMLElement>('.djstar-hud-card')
+
+      if (djstar && saturn) {
+        gsap.to(saturn, {
+          y: -26,
+          rotate: 4,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: djstar,
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: 1.2,
+          },
+        })
+      }
+
+      if (djstar && reticle) {
+        gsap.to(reticle, {
+          rotate: 34,
+          scale: 1.06,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: djstar,
+            start: 'top 80%',
+            end: 'bottom 20%',
+            scrub: 1.4,
+          },
+        })
+      }
+
+      if (djstar && hud.length) {
+        gsap.fromTo(hud,
+          { opacity: 0, y: 18 },
+          {
+            opacity: 1,
+            y: 0,
+            stagger: 0.08,
+            duration: 0.55,
+            ease: 'power2.out',
+            scrollTrigger: { trigger: djstar, start: 'top 58%' },
+          },
+        )
+      }
     }, root)
 
     return () => ctx.revert()
@@ -130,14 +178,44 @@ export default function Projects() {
               )}
 
               {index === 2 && (
-                <div className="observatory-console">
+                <div className="observatory-console djstar-terminal">
+                  <div className="djstar-topbar">
+                    <span>DJS-01 / DEEP SPACE OBSERVATION</span>
+                    <span className="djstar-live">LIVE</span>
+                  </div>
+
                   <div className="observatory-screen">
                     <span className="console-brand">DJSTAR OBSERVATORY</span>
+
+                    <div className="djstar-hud-card hud-coordinates">
+                      <small>TRACKING</small>
+                      <b>LOCKED</b>
+                      <span>AZ 214.8° · ALT 42.1°</span>
+                    </div>
+
+                    <div className="djstar-hud-card hud-weather">
+                      <small>SKY CONDITION</small>
+                      <b>CLEAR</b>
+                      <span>VISIBILITY 9.7 / 10</span>
+                    </div>
+
+                    <div className="djstar-reticle"><i /><i /><span /></div>
                     <div className="saturn"><i /><span /></div>
-                    <strong>SATURN</strong>
-                    <small>TODAY'S OBJECT</small>
+
+                    <div className="djstar-object-copy">
+                      <small>TODAY'S OBJECT</small>
+                      <strong>SATURN</strong>
+                      <span>RA 23h 14m · DEC −07° 21′</span>
+                    </div>
+
+                    <div className="djstar-spectrum"><i /><i /><i /><i /><i /><i /><i /></div>
                   </div>
-                  <div className="console-controls"><i /><i /><i /></div>
+
+                  <div className="console-controls">
+                    <span className="djstar-system">SYSTEM ONLINE</span>
+                    <span className="djstar-optics">OPTICS READY</span>
+                    <i /><i /><i />
+                  </div>
                 </div>
               )}
             </div>
