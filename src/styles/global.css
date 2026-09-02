@@ -17,12 +17,15 @@ h2 { margin: 0; font-size: clamp(1rem, 2vw, 1.25rem); font-weight: 650; }
 .interaction-guide { position: absolute; z-index: 9; left: 50%; bottom: 92px; transform: translateX(-50%); display: flex; align-items: center; gap: 9px; padding: 10px 14px; border: 1px solid rgba(25,24,22,.24); background: rgba(238,233,223,.82); backdrop-filter: blur(12px); box-shadow: 0 10px 28px rgba(63,48,37,.08); font-size: 12px; white-space: nowrap; pointer-events: none; }
 .interaction-guide kbd { display: inline-grid; place-items: center; min-width: 30px; height: 30px; padding: 0 8px; border: 1px solid rgba(25,24,22,.9); border-bottom-width: 3px; border-radius: 5px; background: #dd6043; color: #fff8ef; font-weight: 800; box-shadow: inset 0 1px rgba(255,255,255,.28); }
 
-.project-shortcut-links { position: absolute; z-index: 9; right: 24px; bottom: 22px; display: flex; gap: 8px; }
-.project-shortcut-link { display: inline-flex; align-items: center; gap: 8px; min-height: 38px; padding: 7px 10px; border: 1px solid rgba(25,24,22,.22); border-radius: 7px; background: rgba(238,233,223,.78); color: #191816; cursor: pointer; backdrop-filter: blur(10px); box-shadow: 0 8px 24px rgba(62,45,35,.06); transition: transform .16s ease, border-color .16s ease, background .16s ease, box-shadow .16s ease; }
-.project-shortcut-link:hover, .project-shortcut-link:focus-visible { transform: translateY(-2px); border-color: rgba(221,96,67,.58); background: rgba(245,239,229,.92); box-shadow: 0 10px 24px rgba(62,45,35,.1); outline: none; }
-.project-shortcut-link.is-active { transform: translateY(2px); background: rgba(221,96,67,.16); }
-.shortcut-key { display: inline-grid; place-items: center; width: 24px; height: 24px; border-radius: 4px; background: #dd6043; color: #fff8ef; font-size: 11px; font-weight: 800; }
-.project-shortcut-link > span:nth-child(2) { font-size: 10px; letter-spacing: .08em; }
+.project-shortcut-links { position: absolute; z-index: 9; right: 24px; bottom: 22px; display: flex; gap: 10px; }
+.project-shortcut-link { --project-color: #dd6043; --project-soft: rgba(221,96,67,.12); display: inline-flex; align-items: center; gap: 9px; min-height: 42px; padding: 8px 13px 8px 9px; border: 1px solid color-mix(in srgb, var(--project-color) 30%, transparent); border-radius: 10px; background: rgba(245,240,231,.88); color: #191816; cursor: pointer; backdrop-filter: blur(12px); box-shadow: 0 8px 22px rgba(62,45,35,.07); transition: transform .18s ease, border-color .18s ease, background .18s ease, box-shadow .18s ease; }
+.project-shortcut-link:nth-child(1) { --project-color: #c72f63; --project-soft: rgba(199,47,99,.12); }
+.project-shortcut-link:nth-child(2) { --project-color: #315f8d; --project-soft: rgba(49,95,141,.12); }
+.project-shortcut-link:nth-child(3) { --project-color: #c89438; --project-soft: rgba(200,148,56,.13); }
+.project-shortcut-link:hover, .project-shortcut-link:focus-visible { transform: translateY(-3px); border-color: var(--project-color); background: color-mix(in srgb, var(--project-color) 8%, #f7f1e7); box-shadow: 0 12px 28px color-mix(in srgb, var(--project-color) 18%, transparent); outline: none; }
+.project-shortcut-link.is-active { transform: translateY(1px); background: var(--project-soft); border-color: var(--project-color); }
+.shortcut-key { display: inline-grid; place-items: center; width: 27px; height: 27px; border-radius: 6px; background: var(--project-color); color: #fff; font-size: 11px; font-weight: 800; box-shadow: inset 0 1px rgba(255,255,255,.3); }
+.project-shortcut-link > span:nth-child(2) { font-size: 10px; font-weight: 700; letter-spacing: .07em; color: color-mix(in srgb, var(--project-color) 82%, #191816); }
 
 @media (max-width: 900px) {
   .interaction-guide { bottom: 112px; font-size: 11px; gap: 7px; }
@@ -36,5 +39,5 @@ h2 { margin: 0; font-size: clamp(1rem, 2vw, 1.25rem); font-weight: 650; }
   .keyboard-scrub-frame { object-position: center; }
   .interaction-guide { bottom: 126px; max-width: calc(100% - 28px); white-space: normal; justify-content: center; flex-wrap: wrap; text-align: center; }
   .project-shortcut-links { bottom: 20px; flex-direction: column; width: calc(100% - 32px); }
-  .project-shortcut-link { justify-content: space-between; width: 100%; }
+  .project-shortcut-link { justify-content: flex-start; width: 100%; }
 }
