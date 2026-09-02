@@ -6,16 +6,16 @@ gsap.registerPlugin(ScrollTrigger)
 
 type ProjectKey = 'P' | 'D' | 'O'
 
-const messages: Record<ProjectKey, string> = {
-  P: 'P 키를 눌러 PLIVY에 방문해보세요',
-  D: 'D 키를 눌러 대전시민천문대를 방문해보세요',
-  O: 'O 키를 눌러 OASIS에 방문해보세요',
-}
-
 const projectUrls: Record<ProjectKey, string> = {
   P: 'https://plivy-intro.vercel.app',
-  D: '#',
-  O: '#',
+  D: 'https://djstar-observatory.vercel.app/',
+  O: 'https://oasis-xi-eight.vercel.app/',
+}
+
+const projectLabels: Record<ProjectKey, string> = {
+  P: 'PLIVY',
+  D: 'DJSTAR',
+  O: 'OASIS',
 }
 
 const scrubImage = '/assets/scrub/keyboard_01_wide.webp'
@@ -24,8 +24,8 @@ export default function KeyboardHero() {
   const sectionRef = useRef<HTMLElement>(null)
   const imageRef = useRef<HTMLImageElement>(null)
   const interactionRef = useRef<HTMLDivElement>(null)
-  const [project, setProject] = useState<ProjectKey | null>(null)
   const [ready, setReady] = useState(false)
+  const [activeKey, setActiveKey] = useState<ProjectKey | null>(null)
 
   useEffect(() => {
     const section = sectionRef.current
@@ -86,22 +86,28 @@ export default function KeyboardHero() {
     }
   }, [])
 
+  const openProject = (key: ProjectKey) => {
+    setActiveKey(key)
+    window.setTimeout(() => {
+      window.open(projectUrls[key], '_blank', 'noopener,noreferrer')
+      window.setTimeout(() => setActiveKey(null), 250)
+    }, 140)
+  }
+
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => {
       if (!ready) return
+      const target = event.target as HTMLElement | null
+      if (target && ['INPUT', 'TEXTAREA', 'SELECT'].includes(target.tagName)) return
       const key = event.key.toUpperCase() as ProjectKey
       if (key !== 'P' && key !== 'D' && key !== 'O') return
-      const url = projectUrls[key]
-      if (url !== '#') window.open(url, '_blank', 'noopener,noreferrer')
+      event.preventDefault()
+      openProject(key)
     }
+
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
   }, [ready])
-
-  const activate = (key: ProjectKey) => {
-    const url = projectUrls[key]
-    if (url !== '#') window.open(url, '_blank', 'noopener,noreferrer')
-  }
 
   return (
     <section ref={sectionRef} className="keyboard-hero" id="keyboard-hero">
@@ -122,23 +128,28 @@ export default function KeyboardHero() {
         </header>
 
         <div ref={interactionRef} className="keyboard-interaction-layer">
-          <button className="key-hotspot key-hotspot-d" onMouseEnter={() => setProject('D')} onMouseLeave={() => setProject(null)} onClick={() => activate('D')} aria-label="대전시민천문대 열기">D</button>
-          <button className="key-hotspot key-hotspot-o" onMouseEnter={() => setProject('O')} onMouseLeave={() => setProject(null)} onClick={() => activate('O')} aria-label="OASIS 열기">O</button>
-          <button className="key-hotspot key-hotspot-p" onMouseEnter={() => setProject('P')} onMouseLeave={() => setProject(null)} onClick={() => activate('P')} aria-label="PLIVY 열기">P</button>
-
-          <div className={`interaction-guide ${project ? 'is-project' : ''}`}>
-            {project ? (
-              <><kbd>{project}</kbd><span>{messages[project]}</span></>
-            ) : (
-              <><span className="cursor-symbol">↖</span><span>마우스를 프로젝트 키 위로 움직여보세요</span></>
-            )}
+          <div className="interaction-guide keyboard-only-guide">
+            <span>키보드에서</span>
+            <kbd>P</kbd><span>PLIVY</span>
+            <kbd>D</kbd><span>DJSTAR</span>
+            <kbd>O</kbd><span>OASIS</span>
+            <span>키를 눌러 방문하세요</span>
           </div>
 
-          <div className="project-key-legend" aria-label="Project shortcuts">
-            <span><b>P</b> PLIVY</span>
-            <span><b>D</b> DJSTAR</span>
-            <span><b>O</b> OASIS</span>
-          </div>
+          <nav className="project-shortcut-links" aria-label="Project shortcuts">
+            {(['P', 'D', 'O'] as ProjectKey[]).map(key => (
+              <button
+                key={key}
+                type="button"
+                className={`project-shortcut-link ${activeKey === key ? 'is-active' : ''}`}
+                onClick={() => openProject(key)}
+              >
+                <span className="shortcut-key">{key}</span>
+                <span>{projectLabels[key]}</span>
+                <span aria-hidden="true">↗</span>
+              </button>
+            ))}
+          </nav>
         </div>
       </div>
     </section>
