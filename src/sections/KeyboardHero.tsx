@@ -92,18 +92,21 @@ export default function KeyboardHero() {
 
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
-      if (!ready || !visibleRef.current || event.repeat || event.isComposing || event.ctrlKey || event.metaKey || event.altKey) return
+      if (!ready || !visibleRef.current || event.repeat || event.ctrlKey || event.metaKey || event.altKey) return
       const target = event.target as HTMLElement | null
-      if (target?.closest('input, textarea, select, button, a, [contenteditable]:not([contenteditable="false"]), [role="textbox"]')) return
+      if (target?.isContentEditable || target?.closest('input, textarea, select, [role="textbox"]')) return
       const key = (event.code.startsWith('Key') ? event.code.slice(3) : event.key.toUpperCase()) as ProjectKey
       if (!['P', 'D', 'O'].includes(key)) return
       event.preventDefault()
       press(key)
-      openProject(key)
     }
     const onKeyUp = (event: KeyboardEvent) => {
       const key = event.code.startsWith('Key') ? event.code.slice(3) : event.key.toUpperCase()
-      if (key === heldKey.current) release()
+      if (key !== heldKey.current) return
+      release()
+      if (!ready || !visibleRef.current || event.ctrlKey || event.metaKey || event.altKey) return
+      event.preventDefault()
+      openProject(key as ProjectKey)
     }
     const onVisibility = () => { if (document.hidden) release() }
     window.addEventListener('keydown', onKeyDown)
@@ -153,7 +156,7 @@ export default function KeyboardHero() {
                   <polygon className="photo-key-well" points={polygon} />
                   <g className="photo-key-cap">
                     <image href={scrubImage} width="1950" height="1096" clipPath={`url(#${clipId}-${key})`} />
-                    <polygon className="photo-key-highlight" points={polygon} />
+                    <polygon className="photo-key-hit" points={polygon} />
                   </g>
                 </a>
               ))}
