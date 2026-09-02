@@ -1,16 +1,14 @@
-.visual-observatory{position:relative;min-height:720px;display:flex;align-items:center;justify-content:center;overflow:visible;perspective:1400px}
-.djstar-photo-mockup{position:relative;width:min(590px,47vw);aspect-ratio:512/730;border-radius:26px;overflow:hidden;transform-style:preserve-3d;transform-origin:50% 60%;background:#06111d;box-shadow:0 42px 100px rgba(0,0,0,.48),0 0 90px rgba(49,111,166,.13)}
-.djstar-cockpit-photo{position:absolute;z-index:1;inset:0;width:100%;height:100%;display:block;object-fit:cover;object-position:center;transform:scale(1.01)}
-.djstar-window-display{position:absolute;z-index:2;left:18.1%;top:29.2%;width:63.8%;height:28.2%;overflow:hidden;border-radius:8% 8% 12% 12% / 12% 12% 18% 18%;background:#02070d;clip-path:polygon(9% 0,91% 0,100% 16%,96% 87%,87% 100%,13% 100%,4% 87%,0 16%);box-shadow:inset 0 0 20px rgba(0,0,0,.72);pointer-events:none}
-.djstar-window-display img{position:absolute;inset:-12%;width:124%;height:124%;object-fit:cover;object-position:center;filter:saturate(.88) contrast(1.08) brightness(.78);opacity:.94;transform:scale(1.02)}
-.djstar-window-display::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(92,164,219,.05),transparent 32%,rgba(0,0,0,.12)),repeating-linear-gradient(0deg,rgba(255,255,255,.018) 0 1px,transparent 1px 3px);mix-blend-mode:screen;pointer-events:none}
-.djstar-window-display span{position:absolute;z-index:2;right:5%;bottom:6%;font:700 6px 'IBM Plex Mono',monospace;letter-spacing:.13em;color:rgba(164,211,244,.72);text-shadow:0 1px 6px #000}
-.djstar-photo-mockup::before{content:'';position:absolute;z-index:3;inset:0;background:linear-gradient(115deg,rgba(255,255,255,.055),transparent 25%,transparent 68%,rgba(59,137,205,.06));pointer-events:none}
-.djstar-photo-mockup::after{content:'';position:absolute;z-index:4;inset:0;border:1px solid rgba(128,178,218,.13);border-radius:inherit;box-shadow:inset 0 0 45px rgba(0,0,0,.16);pointer-events:none}
-.djstar-photo-glass{position:absolute;z-index:3;inset:0;background:radial-gradient(circle at 62% 45%,transparent 0 42%,rgba(0,0,0,.045) 80%);pointer-events:none}
-.djstar-photo-caption{position:absolute;z-index:5;left:25px;right:25px;bottom:17px;display:flex;justify-content:space-between;align-items:center;color:rgba(198,218,234,.55);font:700 7px 'IBM Plex Mono',monospace;letter-spacing:.13em;pointer-events:none;text-shadow:0 1px 8px rgba(0,0,0,.7)}
-.djstar-photo-caption i{font-style:normal;color:#66b7f7}
+.visual-observatory{position:relative;min-height:820px;display:flex;align-items:center;justify-content:center;overflow:visible;perspective:1400px}
+.djstar-photo-mockup{position:relative;width:min(760px,58vw);aspect-ratio:512/730;border-radius:24px;overflow:hidden;transform-style:preserve-3d;transform-origin:50% 60%;background:#06111d;box-shadow:0 48px 115px rgba(0,0,0,.5),0 0 100px rgba(49,111,166,.15)}
+.djstar-cockpit-photo{position:absolute;z-index:1;inset:0;width:100%;height:100%;display:block;object-fit:cover;object-position:center;transform:scale(1.006)}
+.djstar-window-display{position:absolute;z-index:2;left:18.4%;top:29.7%;width:63.2%;height:27.7%;overflow:hidden;background:#01050a;clip-path:polygon(9% 0,91% 0,100% 16%,96% 87%,87% 100%,13% 100%,4% 87%,0 16%);box-shadow:inset 0 0 28px rgba(0,0,0,.8);pointer-events:none}
+.djstar-window-display img{position:absolute;inset:0;width:100%;height:100%;display:block;object-fit:cover;object-position:center;filter:contrast(1.06) brightness(.82) saturate(.92);transform:scale(1.04)}
+.djstar-window-display::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(72,145,205,.035),transparent 34%,rgba(0,0,0,.08)),repeating-linear-gradient(0deg,rgba(255,255,255,.014) 0 1px,transparent 1px 3px);pointer-events:none}
+.djstar-photo-mockup::before{content:'';position:absolute;z-index:3;inset:0;background:linear-gradient(115deg,rgba(255,255,255,.045),transparent 25%,transparent 68%,rgba(59,137,205,.05));pointer-events:none}
+.djstar-photo-mockup::after{content:'';position:absolute;z-index:4;inset:0;border:1px solid rgba(128,178,218,.13);border-radius:inherit;box-shadow:inset 0 0 45px rgba(0,0,0,.14);pointer-events:none}
+.djstar-photo-glass{position:absolute;z-index:3;inset:0;background:radial-gradient(circle at 62% 45%,transparent 0 42%,rgba(0,0,0,.035) 80%);pointer-events:none}
 .work-djstar .work-copy{position:relative;z-index:3}
-@media(max-width:1200px){.visual-observatory{min-height:650px}.djstar-photo-mockup{width:min(530px,48vw)}}
-@media(max-width:1000px){.visual-observatory{min-height:600px}.djstar-photo-mockup{width:min(500px,72vw)}}
-@media(max-width:700px){.visual-observatory{min-height:520px}.djstar-photo-mockup{width:min(430px,92vw);border-radius:22px}.djstar-photo-caption{left:18px;right:18px;bottom:12px;font-size:6px}.djstar-photo-caption i{display:none}}
+.work-djstar .work-visual{overflow:visible}
+@media(max-width:1200px){.visual-observatory{min-height:740px}.djstar-photo-mockup{width:min(680px,57vw)}}
+@media(max-width:1000px){.visual-observatory{min-height:660px}.djstar-photo-mockup{width:min(580px,72vw)}}
+@media(max-width:700px){.visual-observatory{min-height:570px}.djstar-photo-mockup{width:min(470px,94vw);border-radius:20px}}
