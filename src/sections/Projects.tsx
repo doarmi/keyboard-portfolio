@@ -227,7 +227,11 @@ export default function Projects() {
                   </div>
 
                   <div className="vinyl-disc">
-                    <div className="vinyl-label">oasis</div>
+                    <div className="vinyl-label">
+                      <span className="vinyl-label-top">OASIS RECORDS</span>
+                      <strong className="vinyl-label-logo">oasis</strong>
+                      <span className="vinyl-label-bottom">SIDE A · 33⅓ RPM</span>
+                    </div>
                   </div>
                 </div>
               )}

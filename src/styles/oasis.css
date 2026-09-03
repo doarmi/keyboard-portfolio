@@ -1,12 +1,284 @@
-.visual-vinyl{position:relative;justify-items:start;perspective:1500px}
-.visual-vinyl::before{content:'';position:absolute;width:72%;height:16%;left:45%;bottom:5%;transform:translateX(-50%);border-radius:50%;background:rgba(70,49,25,.16);filter:blur(28px)}
-.vinyl-scene{position:relative;width:min(760px,100%);height:540px;transform:perspective(1400px) rotateX(1deg) rotateY(1deg);transform-origin:center;transition:transform .5s cubic-bezier(.2,.8,.2,1)}
-.visual-vinyl:hover .vinyl-scene{transform:perspective(1400px) rotateX(0) rotateY(0) translateY(-5px)}
-.record-sleeve{position:absolute;z-index:4;left:3%;top:12%;width:54%;aspect-ratio:1/1;padding:0;border:0;background:#111;box-shadow:0 28px 58px rgba(62,45,25,.25);transform:rotate(-2deg);overflow:hidden}
-.record-sleeve img{position:absolute;inset:0;width:100%;height:100%;display:block;object-fit:cover;object-position:center center;transform:scale(1.02)}
-.vinyl-disc{position:absolute;z-index:2;right:4%;top:14%;width:57%;aspect-ratio:1/1;border-radius:50%;background:radial-gradient(circle at center,#c58b1f 0 10%,#d7a338 10.4% 16%,#121212 16.5% 18%,transparent 18.4%),repeating-radial-gradient(circle,#0b0b0b 0 2px,#191919 3px 5px,#090909 6px 7px);box-shadow:0 30px 56px rgba(0,0,0,.34),inset -14px -18px 26px rgba(0,0,0,.3);transform:rotate(3deg)}
-.vinyl-disc::before{content:'';position:absolute;inset:2.5%;border-radius:50%;background:linear-gradient(112deg,transparent 34%,rgba(255,255,255,.07) 47%,transparent 60%);pointer-events:none}
-.vinyl-disc::after{content:'';position:absolute;left:50%;top:50%;width:8px;height:8px;border-radius:50%;background:#111;transform:translate(-50%,-50%);box-shadow:0 0 0 1px rgba(255,255,255,.1)}
-.vinyl-label{position:absolute;inset:41%;display:grid;place-items:center;border:none;border-radius:50%;background:transparent;font-family:Georgia,'Times New Roman',serif;font-size:19px;font-style:italic;font-weight:700;color:#2b2115;transform:rotate(10deg)}
-@media(max-width:900px){.vinyl-scene{width:min(680px,100%);height:490px}.record-sleeve{width:56%}.vinyl-disc{width:59%;right:2%}}
-@media(max-width:700px){.vinyl-scene{height:410px}.record-sleeve{left:1%;top:14%;width:60%}.vinyl-disc{right:-1%;top:17%;width:62%}}
+.visual-vinyl {
+    position: relative;
+    justify-items: start;
+    perspective: 1500px
+}
+
+.visual-vinyl::before {
+    content: '';
+    position: absolute;
+    width: 72%;
+    height: 16%;
+    left: 45%;
+    bottom: 5%;
+    transform: translateX(-50%);
+    border-radius: 50%;
+    background: rgba(70, 49, 25, .16);
+    filter: blur(28px)
+}
+
+.vinyl-scene {
+    position: relative;
+    width: min(760px, 100%);
+    height: 540px;
+    transform: perspective(1400px) rotateX(1deg) rotateY(1deg);
+    transform-origin: center;
+    transition: transform .5s cubic-bezier(.2, .8, .2, 1)
+}
+
+.visual-vinyl:hover .vinyl-scene {
+    transform: perspective(1400px) rotateX(0) rotateY(0) translateY(-5px)
+}
+
+.record-sleeve {
+    position: absolute;
+    z-index: 4;
+    left: 3%;
+    top: 12%;
+    width: 54%;
+    aspect-ratio: 1/1;
+    padding: 0;
+    border: 0;
+    background: #111;
+    box-shadow: 0 28px 58px rgba(62, 45, 25, .25);
+    transform: rotate(-2deg);
+    overflow: hidden
+}
+
+.record-sleeve img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: center center;
+    transform: scale(1.02)
+}
+
+.vinyl-disc {
+    position: absolute;
+    z-index: 2;
+    right: 4%;
+    top: 14%;
+    width: 57%;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    background: radial-gradient(circle at center, #c58b1f 0 10%, #d7a338 10.4% 16%, #121212 16.5% 18%, transparent 18.4%), repeating-radial-gradient(circle, #0b0b0b 0 2px, #191919 3px 5px, #090909 6px 7px);
+    box-shadow: 0 30px 56px rgba(0, 0, 0, .34), inset -14px -18px 26px rgba(0, 0, 0, .3);
+    transform: rotate(3deg)
+}
+
+.vinyl-disc::before {
+    content: '';
+    position: absolute;
+    inset: 2.5%;
+    border-radius: 50%;
+    background: linear-gradient(112deg, transparent 34%, rgba(255, 255, 255, .07) 47%, transparent 60%);
+    pointer-events: none
+}
+
+.vinyl-disc::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #111;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, .1)
+}
+
+.vinyl-label {
+    position: absolute;
+    inset: 41%;
+    display: grid;
+    place-items: center;
+    border: none;
+    border-radius: 50%;
+    background: transparent;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 19px;
+    font-style: italic;
+    font-weight: 700;
+    color: #2b2115;
+    transform: rotate(10deg)
+}
+
+@media(max-width:900px) {
+    .vinyl-scene {
+        width: min(680px, 100%);
+        height: 490px
+    }
+
+    .record-sleeve {
+        width: 56%
+    }
+
+    .vinyl-disc {
+        width: 59%;
+        right: 2%
+    }
+}
+
+@media(max-width:700px) {
+    .vinyl-scene {
+        height: 410px
+    }
+
+    .record-sleeve {
+        left: 1%;
+        top: 14%;
+        width: 60%
+    }
+
+    .vinyl-disc {
+        right: -1%;
+        top: 17%;
+        width: 62%
+    }
+}
+
+/* LP 재질 개선 — 사진과 배치는 유지 */
+.visual-vinyl .vinyl-disc {
+    isolation: isolate;
+    container-type: inline-size;
+    border: 1px solid #272727;
+    background:
+        radial-gradient(circle closest-side,
+            #181818 0 34%,
+            transparent 35% 48%,
+            rgba(0, 0, 0, .25) 48.5% 49.2%,
+            transparent 49.8% 65%,
+            rgba(0, 0, 0, .22) 65.5% 66.2%,
+            transparent 66.8% 81%,
+            rgba(0, 0, 0, .25) 81.5% 82.2%,
+            transparent 82.8% 97%,
+            #111 98% 100%),
+        repeating-radial-gradient(circle closest-side,
+            #171717 0 1.2px,
+            #202020 1.5px,
+            #181818 1.9px 2.8px);
+    box-shadow:
+        0 24px 38px rgba(28, 22, 16, .28),
+        inset 0 0 0 3px #171717,
+        inset 0 0 0 5px #303030;
+    animation: none;
+    transform: none;
+}
+
+/* 고정된 조명 반사 */
+.visual-vinyl .vinyl-disc::before {
+    inset: 1%;
+    z-index: 1;
+    border-radius: 50%;
+    background: conic-gradient(from -35deg,
+            transparent 0deg,
+            rgba(255, 255, 255, .025) 25deg,
+            rgba(220, 228, 235, .19) 65deg,
+            rgba(255, 255, 255, .035) 105deg,
+            transparent 140deg 185deg,
+            rgba(220, 228, 235, .10) 245deg,
+            transparent 310deg 360deg);
+}
+
+/* 중앙 구멍 */
+.visual-vinyl .vinyl-disc::after {
+    z-index: 3;
+    width: 7px;
+    height: 7px;
+    background: #171512;
+    box-shadow:
+        inset 1px 1px 2px #000,
+        0 0 0 2px #c5b99e;
+    pointer-events: none;
+}
+
+/* 크림색 종이 라벨 */
+.visual-vinyl .vinyl-label {
+    inset: 34%;
+    z-index: 2;
+    display: block;
+    overflow: hidden;
+    border: 1px solid #c7b998;
+    border-radius: 50%;
+    background:
+        radial-gradient(circle,
+            transparent 0 17%,
+            rgba(113, 91, 53, .18) 17.5% 18.5%,
+            transparent 19%),
+        linear-gradient(135deg, #f4eedc, #d9cbaa);
+    box-shadow:
+        0 0 0 4px #111,
+        0 0 0 5px #343434,
+        inset 0 0 14px rgba(96, 73, 37, .12);
+    color: #24231f;
+    font-family: Arial, Helvetica, sans-serif;
+    font-style: normal;
+    text-align: center;
+    transform: none;
+    animation: portfolio-label-spin 28s linear infinite;
+}
+
+.visual-vinyl .vinyl-label-top,
+.visual-vinyl .vinyl-label-bottom {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    font-size: clamp(7px, 2.1cqw, 10px);
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: .06em;
+    white-space: nowrap;
+}
+
+.visual-vinyl .vinyl-label-top {
+    top: 16%;
+}
+
+.visual-vinyl .vinyl-label-logo {
+    position: absolute;
+    top: 22%;
+    left: 14%;
+    width: 72%;
+    height: 22%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: 1px solid #24231f;
+    background: #24231f;
+    color: #f2ead7;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: clamp(15px, 6cqw, 28px);
+    font-weight: 900;
+    font-style: italic;
+    line-height: 1;
+    letter-spacing: -.06em;
+}
+
+.visual-vinyl .vinyl-label-bottom {
+    bottom: 19%;
+    font-size: clamp(6px, 1.9cqw, 9px);
+    letter-spacing: .03em;
+}
+
+@keyframes portfolio-label-spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .visual-vinyl .vinyl-label {
+        animation: none;
+    }
+}
