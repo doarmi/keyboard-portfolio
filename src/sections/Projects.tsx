@@ -262,7 +262,9 @@ export default function Projects() {
                 <span>NEXT EXPERIENCE</span>
                 <div className="transition-line" />
                 <strong>ENTER OASIS</strong>
-                <small>KEEP SCROLLING ↓</small>
+                <small className="scroll-cue">
+                  KEEP SCROLLING <span className="scroll-cue-arrow">↓</span>
+                </small>
               </div>
             </div>
           )}
@@ -278,7 +280,9 @@ export default function Projects() {
                 <span>NEXT EXPERIENCE</span>
                 <div className="transition-line" />
                 <strong>ENTER THE OBSERVATORY</strong>
-                <small>KEEP SCROLLING ↓</small>
+                <small className="scroll-cue">
+                  KEEP SCROLLING <span className="scroll-cue-arrow">↓</span>
+                </small>
               </div>
             </div>
           )}
