@@ -668,3 +668,27 @@ body {
     text-shadow: none;
   }
 }
+
+/* About — 프로필 사진 제거 후 2열 정렬 */
+.about-grid {
+  grid-template-columns: minmax(0, 1.25fr) minmax(280px, .75fr);
+  gap: clamp(50px, 8vw, 150px);
+  align-items: center;
+}
+
+.profile-meta {
+  grid-column: auto;
+}
+
+@media (max-width: 900px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  .profile-meta {
+    grid-column: auto;
+    width: 100%;
+    max-width: 520px;
+  }
+}
