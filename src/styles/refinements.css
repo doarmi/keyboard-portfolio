@@ -692,3 +692,42 @@ body {
     max-width: 520px;
   }
 }
+
+/* 이메일 링크 + 복사 버튼 */
+.profile-meta .email-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.copy-email-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 7px;
+  border: 1px solid rgba(25, 24, 22, .18);
+  border-radius: 5px;
+  background: transparent;
+  color: #6b645d;
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: .08em;
+  cursor: pointer;
+  transition:
+    color .2s ease,
+    border-color .2s ease,
+    background .2s ease;
+}
+
+.copy-email-button svg {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+}
+
+.copy-email-button:hover,
+.copy-email-button.is-copied {
+  border-color: #c72f63;
+  background: rgba(199, 47, 99, .07);
+  color: #c72f63;
+}
