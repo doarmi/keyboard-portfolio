@@ -21,9 +21,11 @@ export default function About() {
       <div className="about-grid">
         <div className="about-copy">
           <h2>HYOJIN AHN</h2>
+
           <p className="about-role">
             SERVICE PLANNING · UI/UX DESIGN · INTERACTIVE WEB · WEB PUBLISHER
           </p>
+
           <p>
             사용자의 흐름을 설계하고 아이디어를 구체화해
             <br />
@@ -34,12 +36,14 @@ export default function About() {
         <dl className="profile-meta">
           <div>
             <dt>EMAIL</dt>
+
             <dd className="email-actions">
               <a href={`mailto:${email}`}>{email}</a>
 
               <button
                 type="button"
-                className={`copy-email-button ${emailCopied ? 'is-copied' : ''}`}
+                className={`copy-email-button ${emailCopied ? 'is-copied' : ''
+                  }`}
                 onClick={copyEmail}
                 aria-label="이메일 주소 복사"
                 title="이메일 주소 복사"
@@ -50,8 +54,16 @@ export default function About() {
                   height="15"
                   aria-hidden="true"
                 >
-                  <rect x="8" y="8" width="11" height="11" rx="2" /><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" />
+                  <rect
+                    x="8"
+                    y="8"
+                    width="11"
+                    height="11"
+                    rx="2"
+                  />
+                  <path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" />
                 </svg>
+
                 <span>{emailCopied ? 'COPIED' : 'COPY'}</span>
               </button>
             </dd>
@@ -66,6 +78,32 @@ export default function About() {
                 rel="noreferrer"
               >
                 @hyoguzip
+              </a>
+            </dd>
+          </div>
+
+          <div>
+            <dt>GITHUB</dt>
+            <dd>
+              <a
+                href="https://github.com/doarmi"
+                target="_blank"
+                rel="noreferrer"
+              >
+                github.com/doarmi
+              </a>
+            </dd>
+          </div>
+
+          <div>
+            <dt>NOTION</dt>
+            <dd>
+              <a
+                href="https://app.notion.com/p/375cedfd0bc08356a2ae817409b561ea?source=copy_link"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Portfolio
               </a>
             </dd>
           </div>
