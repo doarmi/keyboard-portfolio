@@ -16,6 +16,7 @@ const projects = [
       '음악과 함께한 순간을 기록하고 다시 발견하는\n음악 다이어리 커뮤니티',
     href: 'https://plivy-intro.vercel.app',
     notefolio: 'https://notefolio.net/hyogu_U2/465877',
+    readme: 'https://github.com/doarmi/plivy/blob/main/README.md',
     visual: 'iphone',
   },
   {
@@ -26,6 +27,7 @@ const projects = [
       '밴드와 팬의 경험을 하나의 공간으로 연결한\n인터랙티브 팬 플랫폼',
     href: 'https://oasis-xi-eight.vercel.app/',
     notefolio: 'https://notefolio.net/hyogu_U2/465806',
+    readme: 'https://github.com/doarmi/oasis/blob/main/README.md',
     visual: 'vinyl',
   },
   {
@@ -35,6 +37,8 @@ const projects = [
     description:
       '우주를 관측하고 배우며 직접 탐험하는\n대전시민천문대 디지털 경험',
     href: 'https://djstar-observatory.vercel.app/',
+    readme:
+      'https://github.com/doarmi/djstar-observatory/blob/main/README.md',
     visual: 'observatory',
   },
 ] as const
@@ -196,6 +200,17 @@ export default function Projects() {
                     <span>NOTEFOLIO</span>
                   </a>
                 )}
+
+                {'readme' in project && (
+                  <a
+                    className="project-view-button project-readme-button"
+                    href={project.readme}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <span>README</span>
+                  </a>
+                )}
               </div>
             </div>
 
@@ -228,6 +243,7 @@ export default function Projects() {
                     <div className="playlist-row">
                       RECENT RECORDS
                     </div>
+
                     <div className="playlist-row">
                       MY PLAYLIST
                     </div>
@@ -238,7 +254,10 @@ export default function Projects() {
               {index === 1 && (
                 <div className="vinyl-scene" aria-hidden="true">
                   <div className="record-sleeve">
-                    <img src="/assets/oasis-band.jpg" alt="" />
+                    <img
+                      src="/assets/oasis-band.jpg"
+                      alt=""
+                    />
                   </div>
 
                   <div className="vinyl-disc">
@@ -246,9 +265,11 @@ export default function Projects() {
                       <span className="vinyl-label-top">
                         OASIS RECORDS
                       </span>
+
                       <strong className="vinyl-label-logo">
                         oasis
                       </strong>
+
                       <span className="vinyl-label-bottom">
                         SIDE A · 33⅓ RPM
                       </span>
@@ -288,11 +309,16 @@ export default function Projects() {
             >
               <div className="transition-inner">
                 <span>NEXT EXPERIENCE</span>
+
                 <div className="transition-line" />
+
                 <strong>ENTER OASIS</strong>
+
                 <small className="scroll-cue">
                   KEEP SCROLLING{' '}
-                  <span className="scroll-cue-arrow">↓</span>
+                  <span className="scroll-cue-arrow">
+                    ↓
+                  </span>
                 </small>
               </div>
             </div>
@@ -307,11 +333,18 @@ export default function Projects() {
 
               <div className="transition-inner">
                 <span>NEXT EXPERIENCE</span>
+
                 <div className="transition-line" />
-                <strong>ENTER THE OBSERVATORY</strong>
+
+                <strong>
+                  ENTER THE OBSERVATORY
+                </strong>
+
                 <small className="scroll-cue">
                   KEEP SCROLLING{' '}
-                  <span className="scroll-cue-arrow">↓</span>
+                  <span className="scroll-cue-arrow">
+                    ↓
+                  </span>
                 </small>
               </div>
             </div>
