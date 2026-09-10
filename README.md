@@ -18,6 +18,14 @@ Keyboard Portfolio는 일반적인 카드형 프로젝트 목록 대신 **실제
 
 ------------------------------------------------------------------------
 
+## Live Demo
+
+🔗 **Keyboard Portfolio**  
+https://keyboard-portfolio-seven.vercel.app/
+
+> 키보드 인터랙션을 통해 PLIVY, OASIS, DJSTAR 프로젝트를 탐색할 수 있는 포트폴리오 랜딩 페이지입니다.
+
+
 ## Keyboard Navigation
 
 메인 키보드는 세 프로젝트의 바로가기 역할을 합니다.
