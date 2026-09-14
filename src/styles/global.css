@@ -817,3 +817,68 @@ section {
     padding-right: 22px;
     white-space: nowrap;
 }
+
+/* Skills Progress */
+.skill-progress-list {
+    width: 100%;
+    max-width: 950px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 64px;
+    row-gap: 30px;
+    margin-top: 32px;
+}
+
+.skill-progress-item {
+    width: 100%;
+}
+
+.skill-progress-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.skill-progress-name {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    color: #191919;
+}
+
+.skill-progress-percent {
+    font-size: 12px;
+    font-weight: 600;
+    color: rgba(25, 25, 25, 0.55);
+}
+
+.skill-progress-track {
+    position: relative;
+    width: 100%;
+    height: 8px;
+
+    overflow: hidden;
+
+    border: 1px solid rgba(25, 25, 25, 0.12);
+    border-radius: 999px;
+
+    background: rgba(25, 25, 25, 0.06);
+}
+
+.skill-progress-bar {
+    height: 100%;
+
+    border-radius: inherit;
+
+    background: #191919;
+
+    transition: width 0.8s ease;
+}
+
+@media (max-width: 768px) {
+    .skill-progress-list {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+}
