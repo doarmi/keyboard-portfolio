@@ -86,7 +86,7 @@ export default function About() {
             <dt>GITHUB</dt>
             <dd>
               <a
-                href="https://github.com/doarmi"
+                href="https://github.com/doarmi/keyboard-portfolio"
                 target="_blank"
                 rel="noreferrer"
               >

@@ -165,3 +165,57 @@
 .keyboard-photo-keys .photo-key-well {
   display: none;
 }
+
+/* ABOUT ME BUTTON */
+.keyboard-interaction-layer {
+  z-index: 50;
+}
+
+.about-me-button {
+  position: absolute;
+  left: 50%;
+  bottom: 32px;
+  transform: translateX(-50%);
+
+  z-index: 999;
+  pointer-events: auto;
+
+  min-width: 160px;
+  padding: 12px 24px;
+
+  border: 1px solid rgba(30, 30, 30, 0.35);
+  border-radius: 999px;
+
+  background: rgba(245, 242, 235, 0.92);
+  color: #222;
+
+  font: inherit;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+
+  cursor: pointer;
+
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(10px);
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.about-me-button:hover {
+  background: #fff;
+  transform: translateX(-50%) translateY(-2px);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.2);
+}
+
+.about-me-button:active {
+  transform: translateX(-50%) translateY(1px);
+}
+
+.about-me-button:disabled {
+  opacity: 0;
+  pointer-events: none;
+}
