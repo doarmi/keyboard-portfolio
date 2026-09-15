@@ -426,15 +426,7 @@ export default function KeyboardHero() {
               ))}
             </div>
 
-            <button
-              type="button"
-              className="about-me-button"
-              onClick={goToAbout}
-              disabled={!ready}
-            >
-              ABOUT ME
-              <span aria-hidden="true"> ↓</span>
-            </button>
+
           </div>
         </div>
       </div>
